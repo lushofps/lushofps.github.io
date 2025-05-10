@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>lusho</title>
+    <style>
+        /* ===== FULL BLACK BACKGROUND ===== */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* ===== LINK STYLES ===== */
+        .links a {
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 300px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.pinimg.com/736x/79/63/ac/7963ac0ee855d1717373635e8e660867.jpg" class="avatar" alt="Profile">
+        <h1>lusho</h1>
+        
+        <div class="links">
+            <a href="#" onclick="playMusic()">Enter Site</a>
+            <a href="https://x.com/lushoaim">Twitter</a>
+            <a href="https://www.tiktok.com/@lusho.fps">tiktok</a>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="heavenly.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function playMusic() {
+            const music = document.getElementById("bgMusic");
+            music.volume = 0.5; // 50% volume
+            music.play().catch(e => {
+                // Fallback for browsers that block autoplay
+                alert(click);
+                document.body.onclick = () => music.play();
+            });
+        }
+        
+        // Auto-play when page loads (may not work due to browser restrictions)
+        window.onload = playMusic;
+    </script>
+</body>
+</html>
