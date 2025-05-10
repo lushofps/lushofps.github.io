@@ -1,0 +1,131 @@
+<style>
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        color: white;
+        text-align: center;
+        padding: 50px;
+        margin: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+    }
+    .links a {
+        display: block;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 15px;
+        margin: 10px auto;
+        max-width: 300px;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: 0.3s;
+    }
+    .links a:hover {
+        background: rgba(255,255,255,0.3);
+        transform: scale(1.05);
+    }
+    /* New code to remove bubbles */
+    .links a:focus {
+        outline: none;
+        box-shadow: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <img src="https://c4.wallpaperflare.com/wallpaper/482/939/786/serial-experiments-lain-lain-iwakura-simple-background-monochrome-wallpaper-preview.jpg" class="avatar" alt="Profile">
+        <h1>lusho</h1>  <!-- Changed from @lushofps -->
+        <p>kys</p>
+        
+        <div class="links">
+            <a href="https://x.com/lushoaim">X</a>
+            <a href="https://www.tiktok.com/@lusho.fps">tiktok</a>
+            <a href="https://github.com/lushofps">GitHub</a>
+        </div>
+    </div>
+        <!-- EXISTING CONTENT GOES HERE -->
+
+    <!-- ADD THIS RIGHT BEFORE CLOSING BODY TAG -->
+    <script>
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location = e.target.href;
+                }, 100);
+            }
+        });
+    </script>
+</body> <!-- This is the existing closing tag -->
+<head>
+<style>
+/* ===== MAIN STYLES ===== */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+}
+
+/* ===== LINK STYLES ===== */
+.links a {
+    display: block;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 300px;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+/* ===== REMOVE BUBBLES ===== */
+a:focus, a:active, a:visited {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent !important;
+    tap-highlight-color: transparent !important;
+}
+
+.links a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+body, .container, .links {
+    color: white !important;
+}
+</style>
+</head>
+</body>
