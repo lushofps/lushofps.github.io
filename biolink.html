@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Private BioLink</title>
+    <style>
+        :root {
+            --primary-color: #5865F2; /* Discord blurple */
+            --bg-color: #1e1e2e;
+            --card-color: #2b2d42;
+            --text-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 8px;
+            margin: 30px 0;
+        }
+        
+        .grid-item {
+            aspect-ratio: 1;
+            background-color: var(--card-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .grid-item:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        
+        .link-card {
+            background-color: var(--card-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .link-card:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .password-box {
+            background-color: var(--card-color);
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #3a3d5a;
+            color: white;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            }
+            
+            .grid-item {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Protection -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-box">
+            <h2>Enter Password</h2>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Password">
+            <button class="submit-btn" onclick="checkPassword()">Enter</button>
+        </div>
+    </div>
+    
+    <!-- Main Content (Hidden until password entered) -->
+    <div class="container" id="mainContent" style="display: none;">
+        <header>
+            <div class="profile">
+                <img src="https://i.imgur.com/example.jpg" alt="Profile" class="avatar" id="profileImage">
+                <h1 id="profileName">Your Name</h1>
+                <p id="profileBio">Digital creator | Developer</p>
+            </div>
+        </header>
+        
+        <div class="grid-container" id="grid">
+            <!-- Grid items will be generated by JavaScript -->
+        </div>
+        
+        <div class="links">
+            <a href="https://twitter.com/you" class="link-card" target="_blank">Twitter</a>
+            <a href="https://instagram.com/you" class="link-card" target="_blank">Instagram</a>
+            <a href="https://github.com/you" class="link-card" target="_blank">GitHub</a>
+            <a href="mailto:you@example.com" class="link-card">Email Me</a>
+        </div>
+    </div>
+
+    <script>
+        // Password Protection
+        const CORRECT_PASSWORD = "yourpassword"; // Change this!
+        const passwordModal = document.getElementById('passwordModal');
+        const mainContent = document.getElementById('mainContent');
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if (input === CORRECT_PASSWORD) {
+                passwordModal.style.display = 'none';
+                mainContent.style.display = 'block';
+                localStorage.setItem('bioAuth', 'true');
+            } else {
+                alert('Incorrect password');
+            }
+        }
+        
+        // Check if already authenticated
+        if (localStorage.getItem('bioAuth') {
+            passwordModal.style.display = 'none';
+            mainContent.style.display = 'block';
+        }
+        
+        // Grid Creation
+        const grid = document.getElementById('grid');
+        const GRID_SIZE = 100; // Number of grid items
+        
+        for (let i = 0; i < GRID_SIZE; i++) {
+            const item = document.createElement('div');
+            item.className = 'grid-item';
+            item.textContent = i;
+            item.addEventListener('click', function() {
+                // Customize these links for each grid item
+                const links = [
+                    "https://twitter.com",
+                    "https://instagram.com",
+                    "https://github.com",
+                    "https://discord.com"
+                    // Add more as needed
+                ];
+                
+                // Cycle through links or set specific ones
+                const linkIndex = i % links.length;
+                window.open(links[linkIndex], '_blank');
+            });
+            grid.appendChild(item);
+        }
+        
+        // Customize your profile
+        document.getElementById('profileName').textContent = "Your Name";
+        document.getElementById('profileBio').textContent = "Digital creator | Developer";
+        document.getElementById('profileImage').src = "https://i.imgur.com/example.jpg"; // Replace with your image URL
+    </script>
+</body>
+</html>
