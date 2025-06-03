@@ -1,0 +1,120 @@
+body {
+    font-family: consolas;
+    background-color: #0a0a0a;
+    overflow: hidden;
+}
+
+a:link, a:visited  {
+    color: #ffffffa4;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+::selection {
+    color: #000000;
+    background: #535353;
+  }
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+    gap: 15px;
+    margin-right: 85px;
+}
+
+.main img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.main br {
+    margin-bottom: 3px;
+}
+
+.name {
+    font-size: 24px;
+    margin-top: -5px;
+    margin-bottom: 3px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.animate .main,
+.animate .main img,
+.animate .main a,
+.animate .name,
+.animate #status-dot {
+    animation: fadeIn 1.3s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+#status-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 5px solid #000000;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer; 
+}
+
+#status-dot::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0a0a0a;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+#status-dot:hover::after {
+    opacity: 1;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10000;
+    transition: opacity 0.3s;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
